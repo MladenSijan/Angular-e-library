@@ -11,6 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home.component';
 import { AppErrorHandler } from '../shared/errors/app-error-handler';
 import { ErrorPageComponent } from '../error-page/error-page.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { ErrorPageComponent } from '../error-page/error-page.component';
   ],
   declarations: [
     HomeComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    NavbarComponent,
   ],
   exports: [
   ],

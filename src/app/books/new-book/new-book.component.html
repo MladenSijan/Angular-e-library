@@ -1,0 +1,30 @@
+<div class="form-wrapper">
+  <div class="form-header">
+    <h1>Nova knjiga</h1>
+  </div>
+  <div class="form-body">
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()" method="POST">
+      <mat-form-field class="form-field">
+        <input matInput formControlName="isbn" placeholder="ISBN">
+        <mat-error *ngIf="bookForm.get('isbn').hasError('required')">Popunite polje</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <input matInput formControlName="title" placeholder="Naziv">
+        <mat-error *ngIf="bookForm.get('title').hasError('required')">Popunite polje</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <input matInput formControlName="genre" placeholder="Žanr">
+        <mat-error *ngIf="bookForm.get('genre').hasError('required')">Popunite polje</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <input matInput formControlName="authors" placeholder="Autori">
+        <mat-error *ngIf="bookForm.get('authors').hasError('required')">Popunite polje</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <input matInput formControlName="pagesnum" placeholder="Broj strana">
+        <mat-error *ngIf="bookForm.get('pagesnum').hasError('required')">Popunite polje</mat-error>
+      </mat-form-field>
+      <button mat-raised-button [disabled]="!bookForm.valid" type="submit">Potvrdi</button>
+    </form>
+  </div>
+</div>

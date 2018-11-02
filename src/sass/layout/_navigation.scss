@@ -1,0 +1,33 @@
+.navbar {
+  display: flex;
+  padding: 0.5rem 1rem;
+  align-items: center;
+}
+
+.navbar-item {
+  flex: 1;
+  display: flex;
+}
+
+.navbar-item--brand {
+  margin-right: 10%;
+}
+
+.navbar-item--navigation {
+  flex-basis: 100%;
+}
+
+.navbar-item__link {
+  margin-right: 1rem;
+}
+
+// .navbar-item
+//   grid-column: 2 / 3
+
+// .navbar-item__logo
+
+// .navbar-links
+//   grid-column: 3 / 6
+
+// .navbar-links__link
+//   padding: 10px 15px

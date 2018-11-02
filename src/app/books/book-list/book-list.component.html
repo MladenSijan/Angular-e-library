@@ -1,0 +1,40 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtriraj">
+    </mat-form-field>
+  </div>
+  <mat-table #table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="isbn">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ISBN </mat-header-cell>
+      <mat-cell *matCellDef="let book"> {{book.isbn}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Naziv </mat-header-cell>
+      <mat-cell *matCellDef="let book"> {{book.title}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="author">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Autor </mat-header-cell>
+      <mat-cell *matCellDef="let book"> {{book.author}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="pages">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Broj strana </mat-header-cell>
+      <mat-cell *matCellDef="let book"> {{book.pages}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="details">
+      <mat-header-cell *matHeaderCellDef>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let book">
+        <a [routerLink]="['/books', book.id]"><button color="primary" mat-raised-button> Detalji</button></a>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10]" [showFirstLastButtons]="true"></mat-paginator>
+</div>
