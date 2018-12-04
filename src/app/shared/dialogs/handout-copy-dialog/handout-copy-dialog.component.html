@@ -1,0 +1,19 @@
+<h1 mat-dialog-title class="dialog-title">Izdavanje primerka {{data.SifraPrimerka}}</h1>
+<div mat-dialog-content class="dialog-content">
+  <form [formGroup]="handoutCopyForm">
+    <mat-form-field>
+      <input formControlName="user" type="text" placeholder="Odaberi člana" matInput [matAutocomplete]="autocomplete"
+        [(ngModel)]="userInput" value="">
+      <mat-autocomplete #autocomplete="matAutocomplete">
+        <mat-option *ngFor="let user of filteredUsers" [value]="user.Ime + ' ' + user.Prezime">
+          {{user.Ime}} {{user.Prezime}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button class="btn-warn btn-auto" [mat-dialog-close]="data" [disabled]="!handoutCopyForm.valid" [ngClass]="{'btn-disabled': !handoutCopyForm.valid}"
+    cdkFocusInitial>Izdaj</button>
+  <button class="btn-secondary btn-auto" mat-dialog-close>Odustani</button>
+</div>

@@ -11,7 +11,7 @@ const userRoutes = [
   {
     path: '', component: UsersComponent, children: [
       { path: '', component: UserListComponent },
-      { path: 'new', component: NewUserComponent },
+      { path: 'novi', component: NewUserComponent },
       { path: ':id', component: UserDetailsComponent }
     ]
   }
@@ -22,6 +22,6 @@ const userRoutes = [
     CommonModule,
     RouterModule.forChild(userRoutes)
   ],
-  declarations: []
+  exports: [RouterModule]
 })
 export class UsersRoutingModule { }

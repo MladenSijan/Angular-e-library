@@ -1,0 +1,116 @@
+<div class="content">
+  <div class="content-header content-header--details">
+    <div class="content-header__controls">
+      <button class="btn-transparent btn-back" [routerLink]="['/knjige']">NAZAD</button>
+      <mat-icon class="go-back" [routerLink]="['/knjige']">arrow_back</mat-icon>
+    </div>
+    <div class="content-header__title">
+      <h1>DETALJI KNJIGE</h1>
+    </div>
+    <div class="content-header__controls content-header__controls--right">
+      <!-- <button (click)="confirmBookDelete(book.KnjigaID)" class="btn-warn btn-delete">OBRIŠI <mat-icon>delete</mat-icon></button> -->
+      <!-- <mat-icon (click)="confirmBookDelete(book.KnjigaID)" class="delete">delete</mat-icon> -->
+      <span class="btn-transparent btn-delete btn-controls">
+        <a [routerLink]="['/knjige', 'izmena', book.KnjigaID]">
+          <mat-icon matTooltip="Izmeni podatke">edit</mat-icon>
+        </a>
+        |
+        <span (click)="confirmBookDelete(book.KnjigaID)">
+          <mat-icon matTooltip="Obriši">delete</mat-icon>
+        </span>
+      </span>
+      <a [routerLink]="['/knjige', 'izmena', book.KnjigaID]">
+        <mat-icon class="edit">edit</mat-icon>
+      </a>
+      <span (click)="confirmBookDelete(book.KnjigaID)">
+        <mat-icon class="delete">delete</mat-icon>
+      </span>
+    </div>
+  </div>
+
+  <div class="content-body">
+    <div class="content-body__row">
+      <div class="content-body__info">
+        <div class="content-body__info-header">
+          <h2 class="header-title">{{book.Naziv}}</h2>
+        </div>
+        <div class="content-body__info-body">
+          <div class="content-body__info-body__data-wrapper">
+            <p class="content-body__info-body__data">
+              <span class="info-body-data__attr">JMBG: </span>{{book.Autori}}
+            </p>
+            <p class="content-body__info-body__data">
+              <span class="info-body-data__attr">Žanr: </span>{{book.Zanr}}
+            </p>
+            <p class="content-body__info-body__data">
+              <span class="info-body-data__attr">Broj strana: </span>{{book.BrojStrana}}
+            </p>
+            <p class="content-body__info-body__data">
+              <span class="info-body-data__attr">ISBN: </span>{{book.ISBN}}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="content-body__new-book-copy">
+        <p class="content-body__new-book-copy__title">Unos novog primerka</p>
+        <form [formGroup]="newCopyForm" (ngSubmit)="createNewCopy(newCopyInput.value ,book.KnjigaID)">
+          <mat-form-field>
+            <input #newCopyInput formControlName="newCopy" matInput placeholder="Šifra primerka">
+            <mat-error *ngIf="newCopy.errors?.required">Unesite šifru primerka</mat-error>
+          </mat-form-field>
+          <button [disabled]="!newCopyForm.valid" [ngClass]="{'btn-disabled': !newCopyForm.valid}" class="btn-primary">
+            DODAJ
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="content-body__book-copy-list">
+      <div *ngIf="bookCopies.length > 0;then bookCopiesContent else noCopies"></div>
+      <ng-template #bookCopiesContent>
+        <mat-table #table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="code">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Šifra primerka </mat-header-cell>
+            <mat-cell *matCellDef="let copy"> {{copy.SifraPrimerka}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+            <mat-cell *matCellDef="let copy">
+              <span class="chips-primary" [ngClass]="{'chips-secondary': copy.Pozajmljen}">
+                {{copy.Pozajmljen? 'Pozajmljen' : 'Slobodan'}}
+              </span>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="date">
+            <mat-header-cell *matHeaderCellDef> Datum od </mat-header-cell>
+            <mat-cell *matCellDef="let copy"> {{ copy.DatumOd | date:shortDate }} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let copy" class="table-cell--right">
+              <button *ngIf="copy.Pozajmljen" (click)="returnCopy(copy.PrimerakID)" class="btn-secondary btn-return btn-auto">VRATI</button>
+              <mat-icon *ngIf="copy.Pozajmljen" class="return" (click)="returnCopy(copy.PrimerakID)" matTooltip="Vrati">replay</mat-icon>
+
+              <button *ngIf="!copy.Pozajmljen" (click)="openDialog(copy)" class="btn-primary btn-handout btn-auto">IZDAJ</button>
+              <mat-icon *ngIf="!copy.Pozajmljen" class="handout" (click)="openDialog(copy)" matTooltip="Izdaj">eject</mat-icon>
+
+              <button (click)="confirmCopyDelete(copy)" [disabled]="copy.Pozajmljen" [ngClass]="{'btn-disabled': copy.Pozajmljen}"
+                class="btn-warn btn-delete btn-auto">OBRIŠI</button>
+              <mat-icon class="delete delete-dark" (click)="confirmCopyDelete(copy)" [ngClass]="{'delete-disabled': copy.Pozajmljen}" matTooltip="Obriši">delete</mat-icon>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </ng-template>
+      <mat-paginator #paginator [pageSize]="3" [pageSizeOptions]="[3, 5]" [showFirstLastButtons]="true"></mat-paginator>
+
+      <ng-template #noCopies>
+        <p class="nocontent-info">Knjiga trenutno nema primeraka</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

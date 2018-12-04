@@ -9,6 +9,7 @@ import { UsersRoutingModule } from './users-routing.module';
 import { UserListComponent } from './user-list/user-list.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    SharedModule,
     UsersRoutingModule
   ],
   declarations: [UsersComponent, UserListComponent, NewUserComponent, UserDetailsComponent],

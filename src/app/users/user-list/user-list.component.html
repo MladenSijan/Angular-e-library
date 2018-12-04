@@ -1,3 +1,55 @@
-<p>
-  user-list works!
-</p>
+<div class="table-container mat-elevation-z5">
+  <div class="content-header">
+    <div class="content-header__controls content-header-controls--filter">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtriraj">
+      </mat-form-field>
+    </div>
+    <div class="content-header__title">
+      <h1>Spisak članova</h1>
+    </div>
+    <div class="content-header__controls content-header__controls--right">
+      <a class="btn-fab" [routerLink]="['/clanovi', 'novi']">
+        <mat-icon>add</mat-icon>
+      </a>
+    </div>
+  </div>
+  <div class="content-body">
+    <mat-table #table [dataSource]="dataSource">
+      <ng-container matColumnDef="jmbg">
+        <mat-header-cell *matHeaderCellDef> JMBG </mat-header-cell>
+        <mat-cell class="table-cell--truncate" *matCellDef="let user"> {{user.Jmbg}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="ime">
+        <mat-header-cell *matHeaderCellDef> Ime </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.Ime}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="prezime">
+        <mat-header-cell class="table-cell-indent" *matHeaderCellDef> Prezime </mat-header-cell>
+        <mat-cell class="table-cell-indent" *matCellDef="let user"> {{user.Prezime}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <mat-header-cell class="table-cell-indent table-cell--hidden" *matHeaderCellDef> Email adresa </mat-header-cell>
+        <mat-cell class="table-cell-indent table-cell--hidden" *matCellDef="let user"> {{user.EmailAdresa}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="details">
+        <mat-header-cell *matHeaderCellDef>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let user" class="table-cell__details">
+          <a [routerLink]="['/clanovi', user.ClanID]"><button class="btn-details">Detalji</button></a>
+          <a [routerLink]="['/clanovi', user.ClanID]">
+            <mat-icon class="details">arrow_forward</mat-icon>
+          </a>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10]" [showFirstLastButtons]="true"></mat-paginator>
+  </div>
+</div>

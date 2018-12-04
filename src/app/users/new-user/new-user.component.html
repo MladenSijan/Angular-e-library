@@ -1,3 +1,48 @@
-<p>
-  new-user works!
-</p>
+<div class="content content--form">
+  <div class="content-header content-header--form">
+    <div class="content-header__controls">
+      <a class="btn-transparent btn-back" [routerLink]="['/clanovi']">
+        NAZAD
+      </a>
+      <a [routerLink]="['/clanovi']">
+        <mat-icon class="go-back">arrow_back</mat-icon>
+      </a>
+    </div>
+    <div class="content-header__title content-header__title--fullwidth">
+      <h1>Novi član</h1>
+    </div>
+  </div>
+  <div class="content-body content-body--form">
+    <form class="form-new" [formGroup]="userForm" (ngSubmit)="onSubmit()" method="POST">
+      <mat-form-field class="form-field">
+        <input matInput formControlName="JMBG" placeholder="JMBG" maxlength="13">
+        <mat-error *ngIf="userForm.get('JMBG').hasError('required')">Polje je obavezno</mat-error>
+        <mat-error *ngIf="jmbg.errors?.minlength">Polje mora sadržati 13 karaktera</mat-error>
+        <mat-error *ngIf="jmbg.errors?.pattern">Polje mora sadržati samo brojeve</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <input matInput formControlName="Ime" placeholder="Ime">
+        <mat-error *ngIf="userForm.get('Ime').hasError('required')">Popunite polje</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <input matInput formControlName="Prezime" placeholder="Prezime">
+        <mat-error *ngIf="userForm.get('Prezime').hasError('required')">Popunite polje</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <input matInput formControlName="BrojTelefona" placeholder="Broj telefona">
+        <mat-error *ngIf="userForm.get('BrojTelefona').hasError('required')">Popunite polje</mat-error>
+        <mat-error *ngIf="BrojTelefona.errors?.pattern">Polje mora sadržati samo brojeve</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <input matInput formControlName="EmailAdresa" placeholder="Email adresa">
+        <mat-error *ngIf="userForm.get('EmailAdresa').hasError('required')">Popunite polje</mat-error>
+        <mat-error *ngIf="EmailAdresa.errors?.email">Unesite ispravan format email adrese</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <input matInput formControlName="PostanskaAdresa" placeholder="Poštanska adresa">
+        <mat-error *ngIf="userForm.get('PostanskaAdresa').hasError('required')">Popunite polje</mat-error>
+      </mat-form-field>
+      <button class="btn-primary" [ngClass]="{'btn-disabled': !userForm.valid}" [disabled]="!userForm.valid" type="submit">DODAJ</button>
+    </form>
+  </div>
+</div>

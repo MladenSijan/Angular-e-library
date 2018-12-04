@@ -1,7 +1,12 @@
 .navbar {
   display: flex;
-  padding: 0.5rem 1rem;
   align-items: center;
+}
+
+@media screen and (max-width: 980px) {
+  .navbar {
+    flex-direction: column;
+  }
 }
 
 .navbar-item {
@@ -10,24 +15,30 @@
 }
 
 .navbar-item--brand {
-  margin-right: 10%;
+  flex-basis: 15%;
+
+  a {
+    margin: 0 auto;
+    font-family: 'NotoSans-Bold';
+    color: #fafafa;
+    font-size: 1.5rem;
+
+    &:hover {
+      color: #fafafa;
+    }
+  }
 }
 
 .navbar-item--navigation {
   flex-basis: 100%;
 }
 
-.navbar-item__link {
-  margin-right: 1rem;
+// .navbar-item__link:not(:last-child) {
+//   margin-right: 4rem;
+// }
+
+@media screen and (max-width: 980px) {
+  .navbar-item__link:not(:last-child) {
+    margin-right: 1rem;
+  }
 }
-
-// .navbar-item
-//   grid-column: 2 / 3
-
-// .navbar-item__logo
-
-// .navbar-links
-//   grid-column: 3 / 6
-
-// .navbar-links__link
-//   padding: 10px 15px

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../material/material.module';
+import { SharedModule } from '../shared/shared.module';
+
 import { BooksComponent } from './books.component';
 import { BooksService } from './books.service';
 import { BooksRoutingModule } from './books-routing.module';
@@ -16,6 +18,7 @@ import { BookListComponent } from './book-list/book-list.component';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    SharedModule,
     BooksRoutingModule
   ],
   declarations: [BooksComponent, NewBookComponent, BookDetailsComponent, BookListComponent],

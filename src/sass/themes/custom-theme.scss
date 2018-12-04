@@ -2,10 +2,14 @@
 
 @include mat-core();
 
-$custom-theme-primary: mat-palette($mat-orange, 600);
+$custom-theme-primary: mat-palette($mat-amber, 900);
 $custom-theme-secondary: mat-palette($mat-pink, A200, A100, A400);
 $custom-theme-warn: mat-palette($mat-deep-orange, A700);
 
-$custom-theme: mat-light-theme($custom-theme-primary, $custom-theme-secondary, $custom-theme-warn);
+$custom-theme-dark: mat-dark-theme($custom-theme-primary, $custom-theme-secondary, $custom-theme-warn);
+$custom-theme-light: mat-light-theme($custom-theme-primary, $custom-theme-secondary, $custom-theme-warn);
 
-@include angular-material-theme($custom-theme);
+@include angular-material-theme($custom-theme-light);
+
+$custom-theme-typography: mat-typography-config($font-family: 'NotoSans');
+@include angular-material-typography($custom-theme-typography);

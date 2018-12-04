@@ -8,11 +8,14 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import { BookListComponent } from './book-list/book-list.component';
 
 const bookRoutes = [
-  { path: '', component: BooksComponent, children: [
-    { path: '', component: BookListComponent },
-    { path: 'new', component: NewBookComponent },
-    { path: ':id', component: BookDetailsComponent }
-  ] },
+  {
+    path: '', component: BooksComponent, children: [
+      { path: '', component: BookListComponent },
+      { path: 'nova', component: NewBookComponent },
+      { path: 'izmena/:id', component: NewBookComponent },
+      { path: ':id', component: BookDetailsComponent }
+    ]
+  },
 ];
 
 @NgModule({

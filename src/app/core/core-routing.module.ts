@@ -4,12 +4,14 @@ import { RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
 import { ErrorPageComponent } from '../error-page/error-page.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 const coreRoutes = [
   {
     path: '', component: HomeComponent, children: [
-      { path: 'books', loadChildren: '../books/books.module#BooksModule' },
-      { path: 'users', loadChildren: '../users/users.module#UsersModule' }
+      { path: '', component: NavigationComponent },
+      { path: 'knjige', loadChildren: '../books/books.module#BooksModule' },
+      { path: 'clanovi', loadChildren: '../users/users.module#UsersModule' }
     ]
   },
   { path: 'home', component: HomeComponent, pathMatch: 'full' },

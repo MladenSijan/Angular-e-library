@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -12,11 +12,12 @@ import { HomeComponent } from './home.component';
 import { AppErrorHandler } from '../shared/errors/app-error-handler';
 import { ErrorPageComponent } from '../error-page/error-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
@@ -28,6 +29,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     HomeComponent,
     ErrorPageComponent,
     NavbarComponent,
+    NavigationComponent,
   ],
   exports: [
   ],

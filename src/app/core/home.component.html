@@ -1,7 +1,8 @@
 <app-navbar></app-navbar>
 <div class="container">
-  <div class="main-content">
-    <router-outlet></router-outlet>
+  <div class="main-content" [@routerTransition]="getState(o)">
+    <router-outlet #o="outlet"></router-outlet>
   </div>
   <div></div>
 </div>
+<div class="background"></div>

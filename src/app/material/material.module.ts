@@ -17,7 +17,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatNativeDateModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import { MatNativeDateModule, MatTableModule, MatPaginatorModule, MatSortModule, MatSnackBarModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -41,7 +41,8 @@ import { MatNativeDateModule, MatTableModule, MatPaginatorModule, MatSortModule 
     MatTooltipModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatSnackBarModule
   ],
   exports: [
     MatFormFieldModule,
@@ -62,7 +63,8 @@ import { MatNativeDateModule, MatTableModule, MatPaginatorModule, MatSortModule 
     MatTooltipModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule { }

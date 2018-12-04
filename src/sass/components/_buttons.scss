@@ -1,0 +1,129 @@
+button {
+  border: none;
+  cursor: pointer;
+  padding: 10px 28px;
+}
+
+%btn-shared {
+  padding: 10px 28px;
+  font-family: 'NotoSans-Bold';
+  font-size: 1em;
+  border-radius: 2px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.2s;
+  min-width: 140px;
+
+  &:active {
+    box-shadow: none;
+  }
+}
+
+.btn-primary {
+  @extend %btn-shared;
+  color: #f59d51;
+  background: #fafafa;
+}
+
+.btn-secondary {
+  @extend %btn-shared;
+  color: #d7744d;
+}
+
+.btn-transparent {
+  @extend %btn-shared;
+  color: #fafafa;
+  background: rgba(250, 250, 250, 0.1);
+}
+
+.btn-details {
+  @extend %btn-shared;
+  color: #fafafa;
+  background: #5e483e;
+}
+
+.btn-warn {
+  @extend %btn-shared;
+  background: linear-gradient(135deg, #d7744d 15%, #f18f53);
+  color: #fafafa;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.btn-disabled {
+  @extend %btn-shared;
+  background: #fafafa;
+  color: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.btn-fab {
+  background: rgba(250, 250, 250, 0.1);
+  border-radius: 50px;
+  color: #fafafa;
+  padding: 1.5rem;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.2s;
+
+  &:active {
+    box-shadow: none;
+  }
+}
+
+.btn-auto {
+  min-width: auto;
+}
+
+@media screen and (max-width: 1173px) {
+  .btn-auto {
+    padding: 10px 19px;
+  }
+}
+
+.form-new .btn-primary {
+  width: 100%;
+}
+
+.mat-icon {
+  vertical-align: bottom;
+}
+
+.mat-icon.details {
+  display: none;
+  box-sizing: content-box;
+  border-radius: 4px;
+  padding: 0.5rem;
+  color: #fff;
+  background: #5e483e;
+}
+
+.btn-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1.1rem;
+  font-size: 1.4eem;
+  font-family: 'NotoSans';
+
+  span {
+    cursor: pointer;
+  }
+
+  .mat-icon {
+    color: #fafafa;
+  }
+}
+
+
+@media screen and(max-width: 980px) {
+  .mat-icon.details {
+    display: inline-block;
+  }
+
+  .btn-details,
+  .btn-controls {
+    display: none;
+  }
+
+  .btn-fab {
+    padding: 1rem;
+  }
+}
