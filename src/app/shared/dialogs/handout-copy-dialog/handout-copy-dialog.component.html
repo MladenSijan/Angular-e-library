@@ -1,4 +1,4 @@
-<h1 mat-dialog-title class="dialog-title">Izdavanje primerka {{data.SifraPrimerka}}</h1>
+<h1 mat-dialog-title class="dialog-title">Izdavanje primerka {{data.PrimerakID}}</h1>
 <div mat-dialog-content class="dialog-content">
   <form [formGroup]="handoutCopyForm">
     <mat-form-field>
@@ -6,9 +6,10 @@
         [(ngModel)]="userInput" value="">
       <mat-autocomplete #autocomplete="matAutocomplete">
         <mat-option *ngFor="let user of filteredUsers" [value]="user.Ime + ' ' + user.Prezime">
-          {{user.Ime}} {{user.Prezime}}
+          {{user.ClanID}} {{user.Ime}} {{user.Prezime}}
         </mat-option>
       </mat-autocomplete>
+      <mat-hint *ngIf="userId >= 0">ID člana: {{userId}}</mat-hint>
     </mat-form-field>
   </form>
 </div>

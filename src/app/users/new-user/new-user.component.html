@@ -18,7 +18,7 @@
         <input matInput formControlName="JMBG" placeholder="JMBG" maxlength="13">
         <mat-error *ngIf="userForm.get('JMBG').hasError('required')">Polje je obavezno</mat-error>
         <mat-error *ngIf="jmbg.errors?.minlength">Polje mora sadržati 13 karaktera</mat-error>
-        <mat-error *ngIf="jmbg.errors?.pattern">Polje mora sadržati samo brojeve</mat-error>
+        <mat-error *ngIf="jmbg.errors?.pattern">Unesite ispravan JMBG</mat-error>
       </mat-form-field>
       <mat-form-field class="form-field">
         <input matInput formControlName="Ime" placeholder="Ime">

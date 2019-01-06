@@ -16,16 +16,13 @@ export class NewUserComponent implements OnInit {
   constructor(private userService: UsersService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    this.snackBar.open('Brisanje knjige neuspešno. Nisu vraćeni svi primerci knjige', null, {
-      duration: 250000,
-    });
     this.userForm = new FormGroup({
       'JMBG': new FormControl(
         null,
         [
           Validators.required,
           Validators.minLength(13),
-          Validators.pattern(/^\d+$/i)
+          Validators.pattern(/^(0[1-9]|[12][0-9]|3[01])(0[1-9]|1[012])[0-9]{9}$/i)
         ]),
       'Ime': new FormControl(null, Validators.required),
       'Prezime': new FormControl(null, Validators.required),

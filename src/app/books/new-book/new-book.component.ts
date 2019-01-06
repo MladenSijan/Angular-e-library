@@ -38,6 +38,7 @@ export class NewBookComponent implements OnInit {
           Validators.required,
           Validators.minLength(13),
           Validators.pattern(/^\d+$/i)
+          // (97(8 | 9)) ?\d{ 9}(\d | X) ISBN pattern
         ]),
       'Naziv': new FormControl(null, Validators.required),
       'Autori': new FormControl(null, Validators.required),
@@ -92,7 +93,7 @@ export class NewBookComponent implements OnInit {
           (editedBook) => {
             this.snackBar.open('Knjiga je uspešno izmenjena', null, {
               duration: 2000,
-            }).afterDismissed().subscribe(() => this.router.navigate(['/knjige']));
+            }).afterDismissed().subscribe(() => this.router.navigate(['/knjige', editedBook['KnjigaID']]));
           },
           (error: AppError) => {
             if (error instanceof BadInput) {

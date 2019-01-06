@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatAutocomplete, MatSnackBar, MatInput } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { UsersService } from '../../../users/users.service';
 import { AppError } from '../../errors/app-error';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -14,6 +14,7 @@ export class HandoutCopyDialogComponent implements OnInit {
   users = [];
   filteredUsers = [];
   userInput;
+  userId;
   handoutCopyForm: FormGroup;
 
   constructor(
@@ -51,9 +52,11 @@ export class HandoutCopyDialogComponent implements OnInit {
                       || user['Ime'].concat(' ', user['Prezime']).toLowerCase() === value
             );
           if (selectedUser) {
+            this.userId = selectedUser['ClanID'];
             this.userInput = selectedUser['Ime'] + ' ' + selectedUser['Prezime'];
             this.data['ClanID'] = selectedUser['ClanID'];
           } else {
+            this.userId = -1;
             this.handoutCopyForm.get('user').setErrors({ 'required': false });
           }
         }
@@ -69,6 +72,7 @@ export class HandoutCopyDialogComponent implements OnInit {
         || user['Ime'].concat(' ', user['Prezime']).toLowerCase().includes(value));
     }
   }
+
   get user() { return this.handoutCopyForm.get('user'); }
 }
 
