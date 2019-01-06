@@ -1,0 +1,44 @@
+.navbar {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 980px) {
+  .navbar {
+    flex-direction: column;
+  }
+}
+
+.navbar-item {
+  flex: 1;
+  display: flex;
+}
+
+.navbar-item--brand {
+  flex-basis: 15%;
+
+  a {
+    margin: 0 auto;
+    font-family: 'NotoSans-Bold';
+    color: #fafafa;
+    font-size: 1.5rem;
+
+    &:hover {
+      color: #fafafa;
+    }
+  }
+}
+
+.navbar-item--navigation {
+  flex-basis: 100%;
+}
+
+// .navbar-item__link:not(:last-child) {
+//   margin-right: 4rem;
+// }
+
+@media screen and (max-width: 980px) {
+  .navbar-item__link:not(:last-child) {
+    margin-right: 1rem;
+  }
+}

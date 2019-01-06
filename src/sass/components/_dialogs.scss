@@ -1,0 +1,15 @@
+.dialog-title,
+.dialog-title.mat-dialog-title {
+  font-family: 'NotoSans-Bold';
+}
+
+.dialog-content,
+.dialog-content.mat-dialog-content {
+  overflow: visible;
+}
+
+.dialog-actions,
+.dialog-actions.mat-dialog-actions {
+  justify-content: space-around;
+  padding: 1.5rem 0;
+}

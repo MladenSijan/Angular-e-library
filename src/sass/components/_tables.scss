@@ -1,0 +1,55 @@
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+}
+
+.mat-header-row,
+.mat-row {
+  padding: 0 !important;
+}
+
+.mat-cell {
+  color: #444;
+}
+
+.mat-cell,
+.mat-header-cell {
+  overflow: visible !important;
+  font-family: 'NotoSans-Bold';
+}
+
+.table-cell-indent {
+  padding: 0 1rem;
+}
+
+.table-cell--centered {
+  text-align: center;
+}
+
+.table-cell--right {
+  text-align: right;
+}
+
+.table-cell__details {
+  text-align: right;
+
+  .btn-warn {
+    margin: 0.8rem;
+  }
+}
+
+.table-cell--truncate {
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+@media screen and(max-width: 980px) {
+  .table-cell--hidden {
+    display: none;
+  }
+}

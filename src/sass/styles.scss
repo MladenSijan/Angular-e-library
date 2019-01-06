@@ -1,0 +1,60 @@
+@import 'base/_reset';
+@import '../../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import 'base/_typography', 'base/_animations';
+@import 'abstracts/_mixins', 'abstracts/_variables', 'abstracts/_functions';
+@import 'components/_buttons', 'components/chips', 'components/tables', 'components/dialogs';
+@import 'layout/_forms', 'layout/_grid', 'layout/_header', 'layout/_navigation';
+
+html {
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+*,
+html,
+body {
+  font-family: 'NotoSans';
+  font-size: 100%;
+}
+
+body {
+  background: #000;
+  height: 100%;
+  color: #444;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // height: 100vh;
+  // background: url("../assets/img/background.jpg");
+  // background-position: center;
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // z-index: -1;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+  outline: 0;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    outline: 0;
+  }
+}

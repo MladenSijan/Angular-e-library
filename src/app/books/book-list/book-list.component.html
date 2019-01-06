@@ -1,0 +1,56 @@
+<div class="table-container mat-elevation-z5">
+  <div class="content-header">
+    <div class="content-header__controls content-header-controls--filter">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtriraj">
+      </mat-form-field>
+    </div>
+    <div class="content-header__title">
+      <h1>Spisak knjiga</h1>
+    </div>
+    <div class="content-header__controls content-header__controls--right">
+      <a class="btn-fab" [routerLink]="['/knjige', 'nova']">
+        <mat-icon>add</mat-icon>
+      </a>
+    </div>
+  </div>
+  <div class="content-body">
+    <mat-table #table [dataSource]="dataSource">
+      <ng-container matColumnDef="isbn">
+        <mat-header-cell *matHeaderCellDef> ISBN </mat-header-cell>
+        <mat-cell class="table-cell--truncate" *matCellDef="let book"> {{book.ISBN}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef> Naziv </mat-header-cell>
+        <mat-cell *matCellDef="let book"> {{book.Naziv}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="author">
+        <mat-header-cell class="table-cell-indent" *matHeaderCellDef> Autor </mat-header-cell>
+        <mat-cell class="table-cell-indent" *matCellDef="let book"> {{book.Autori}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="pages">
+        <mat-header-cell class="table-cell-indent table-cell--hidden" *matHeaderCellDef> Broj strana
+        </mat-header-cell>
+        <mat-cell class="table-cell-indent table-cell--hidden" *matCellDef="let book"> {{book.BrojStrana}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="details">
+        <mat-header-cell *matHeaderCellDef>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let book" class="table-cell__details">
+          <a [routerLink]="['/knjige', book.KnjigaID]"><button class="btn-details">Detalji</button></a>
+          <a [routerLink]="['/knjige', book.KnjigaID]">
+            <mat-icon class="details">arrow_forward</mat-icon>
+          </a>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10]" [showFirstLastButtons]="true"></mat-paginator>
+  </div>
+</div>

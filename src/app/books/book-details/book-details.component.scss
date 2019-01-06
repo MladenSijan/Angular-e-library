@@ -1,0 +1,24 @@
+.content-body__new-book-copy {
+  flex-basis: 40%;
+  text-align: center;
+  padding: 1rem 0;
+
+  .content-body__new-book-copy__title {
+    font-size: 1.5em;
+    margin-bottom: 1rem;
+  }
+
+  .mat-form-field {
+    display: block;
+    width: 50%;
+    margin-bottom: 1rem;
+    margin: 0 auto 1.5rem;
+  }
+
+  @media screen and (max-width: 980px) {
+    .mat-form-field {
+      display: inline-block;
+      margin: 0 1.5rem 0 0;
+    }
+  }
+}

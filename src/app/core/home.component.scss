@@ -1,0 +1,29 @@
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background: url("../../assets/img/background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  filter: blur(10px) brightness(70%);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.main-content {
+  flex-basis: 74%;
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 980px) {
+  .main-content {
+    flex-basis: 90%;
+  }
+}

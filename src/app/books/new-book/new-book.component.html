@@ -1,0 +1,54 @@
+<div class="content content--form">
+  <div class="content-header content-header--form">
+    <div *ngIf="isEditMode" class="content-header__controls">
+      <a class="btn-transparent btn-back" [routerLink]="['/knjige', book.KnjigaID]">
+        NAZAD
+      </a>
+      <a [routerLink]="['/knjige', book.KnjigaID]">
+        <mat-icon class="go-back">arrow_back</mat-icon>
+      </a>
+    </div>
+    <div *ngIf="!isEditMode" class="content-header__controls">
+      <a class="btn-transparent btn-back" [routerLink]="['/knjige']">
+        NAZAD
+      </a>
+      <a [routerLink]="['/knjige']">
+        <mat-icon class="go-back">arrow_back</mat-icon>
+      </a>
+    </div>
+    <div class="content-header__title content-header__title--fullwidth">
+      <h1>{{isEditMode? 'Izmena knjige' : 'Nova knjiga'}}</h1>
+    </div>
+  </div>
+  <div class="content-body content-body--form">
+    <form class="form-new" [formGroup]="bookForm" (ngSubmit)="onSubmit()" method="POST">
+      <!-- {{bookForm | json}} -->
+      <mat-form-field class="form-field">
+        <input matInput formControlName="ISBN" [(ngModel)]="isbn" placeholder="ISBN" maxlength="13">
+        <mat-error *ngIf="bookForm.get('ISBN').hasError('required')">Polje je obavezno</mat-error>
+        <mat-error *ngIf="ISBN.errors?.minlength">Polje mora sadržati 13 karaktera</mat-error>
+        <mat-error *ngIf="ISBN.errors?.pattern">Polje mora sadržati samo brojeve</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <input matInput formControlName="Naziv" [(ngModel)]="naziv" placeholder="Naziv">
+        <mat-error *ngIf="bookForm.get('Naziv').hasError('required')">Popunite polje</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <input matInput formControlName="Autori" [(ngModel)]="autori" placeholder="Autori">
+        <mat-error *ngIf="bookForm.get('Autori').hasError('required')">Popunite polje</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <input matInput formControlName="Zanr" [(ngModel)]="zanr" placeholder="Žanr">
+        <mat-error *ngIf="bookForm.get('Zanr').hasError('required')">Popunite polje</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <input matInput formControlName="BrojStrana" [(ngModel)]="brojStrana" placeholder="Broj strana">
+        <mat-error *ngIf="bookForm.get('BrojStrana').hasError('required')">Popunite polje</mat-error>
+        <mat-error *ngIf="BrojStrana.errors?.pattern">Polje mora sadržati samo brojeve</mat-error>
+      </mat-form-field>
+      <button class="btn-primary" [ngClass]="{'btn-disabled': !bookForm.valid}" [disabled]="!bookForm.valid" type="submit">
+        {{isEditMode? 'IZMENI' : 'DODAJ'}}
+      </button>
+    </form>
+  </div>
+</div>

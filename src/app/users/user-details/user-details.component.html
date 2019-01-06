@@ -1,0 +1,71 @@
+<div class="content">
+  <div class="content-header content-header-2 content-header--details">
+    <div class="content-header__controls">
+      <button class="btn-transparent btn-back" [routerLink]="['/clanovi']">NAZAD</button>
+      <mat-icon [routerLink]="['/clanovi']" class="go-back">arrow_back</mat-icon>
+    </div>
+    <div class="content-header__title">
+      <h1>DETALJI ČLANA</h1>
+    </div>
+  </div>
+
+  <div class="content-body">
+    <div class="content-body__info">
+      <div class="content-body__info-header">
+        <h2 class="header-title">{{user.Ime}} {{user.Prezime}}</h2>
+      </div>
+      <div class="content-body__info-body">
+        <div class="content-body__info-body__data-wrapper">
+          <p class="content-body__info-body__data">
+            <span class="info-body-data__attr">JMBG: </span>{{user.Jmbg}}
+          </p>
+          <p class="content-body__info-body__data">
+            <span class="info-body-data__attr">Poštanska adresa: </span>{{user.PostanskaAdresa}}
+          </p>
+          <p class="content-body__info-body__data">
+            <span class="info-body-data__attr">Broj telefona: </span>{{user.BrojTelefona}}
+          </p>
+          <p class="content-body__info-body__data">
+            <span class="info-body-data__attr">Email adresa: </span>{{user.EmailAdresa}}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="content-body__book-copy-list">
+      <div *ngIf="userCopies.length > 0;then userCopiesContent else noCopies"></div>
+      <ng-template #userCopiesContent>
+        <mat-table #table [dataSource]="dataSource">
+          <ng-container matColumnDef="code">
+            <mat-header-cell *matHeaderCellDef> Šifra primerka </mat-header-cell>
+            <mat-cell *matCellDef="let copy">{{copy.SifraPrimerka}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="bookName">
+            <mat-header-cell *matHeaderCellDef> Knjiga </mat-header-cell>
+            <mat-cell *matCellDef="let copy">{{copy.NazivKnjige}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+            <mat-cell *matCellDef="let copy">
+              <span class="chips-primary" [ngClass]="{'chips-secondary': copy.DatumDo === null}">
+                {{copy.DatumDo === null? 'Pozajmljeno' : 'Vraćeno'}}
+              </span>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="date">
+            <mat-header-cell *matHeaderCellDef> Datum</mat-header-cell>
+            <mat-cell *matCellDef="let copy">{{getDate(copy) | date:shortDate }}</mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </ng-template>
+      <ng-template #noCopies>
+        <p class="nocontent-info">Trenutno nema pozajmljenih primeraka</p>
+      </ng-template>
+    </div>
+  </div>
+</div>
